@@ -61,6 +61,7 @@ public class SceneUIManager : MonoBehaviour
         currentScene = scene;
         backgroundScenePanel.sprite = scene.backgroundImage;
         flavorText.SetText(scene.flavorText);
+        flavorText.transform.parent.gameObject.SetActive(true);
         flavorText.gameObject.SetActive(true);
     }
 

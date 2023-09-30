@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,10 +10,11 @@ public class GameManager : MonoBehaviour
     public float waitTimeBeforeDisplayChoices = 3.0f;
     public float waitTimeAfterAgentChoiceIndicatorsDisplay = 2.0f;
     public GameObject endDayPanel;
+    public GameObject gameOverPanel;
 
     public SceneUIManager sceneUIManager;
     public StatusUIManager statusUIManager;
-    public TextMeshProUGUI flavorText;
+    public GameObject flavorTextPanel;
 
     static GameManager instance;
 
@@ -91,6 +91,11 @@ public class GameManager : MonoBehaviour
         float playerHealthChange = Constants.BASE_HEALTH_PER_DAY;
         float playerHappynessChange = Constants.BASE_HAPPYNESS_PER_DAY;
         playerAgent.UpdateStatus(playerSalary, playerHealthChange, playerHappynessChange);
+        if (playerAgent.IsBroken())
+        {
+            GameOver();
+            return;
+        }
 
         foreach (var agent in aiAgents)
         {
@@ -110,7 +115,7 @@ public class GameManager : MonoBehaviour
 
         // Display end of day panel
         endDayPanel.SetActive(true);
-        flavorText.gameObject.SetActive(false);
+        flavorTextPanel.SetActive(false);
     }
 
     public static void SelectPlayerChoice(Choice choice)
@@ -144,6 +149,11 @@ public class GameManager : MonoBehaviour
 
         // Update agents' statuses
         playerAgent.UpdateStatus(choiceOutcomes[choice.ID]);
+        if (playerAgent.IsBroken())
+        {
+            GameOver();
+            yield break;
+        }
         foreach (var (agent, agentChoice) in aiAgents.Zip(aiChoices, (a, c) => (a, c)))
         {
             agent.UpdateStatus(choiceOutcomes[agentChoice.ID]);
@@ -163,5 +173,12 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(NextScene());
         }
+    }
+
+    public void GameOver()
+    {
+        sceneUIManager.HideChoices();
+        flavorTextPanel.SetActive(false);
+        gameOverPanel.SetActive(true);
     }
 }

@@ -18,6 +18,11 @@ public class Agent
         history.StartDay();
     }
 
+    public bool IsBroken()
+    {
+        return currentMoney <= 0 || currentHealth <= 0 || currentHappyness <= 0;
+    }
+
     public void UpdateStatus(ChoiceOutcome choiceOutcomes)
     {
         UpdateStatus(choiceOutcomes.money, choiceOutcomes.health, choiceOutcomes.happyness);
