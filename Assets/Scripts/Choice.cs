@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -38,7 +39,7 @@ public class Choice : ScriptableObject
 {
     public string ID;
     public Sprite cardImage;
-    public ChoiceRequirement[] requirements;
+    public List<ChoiceRequirement> requirements;
     public int space;
     public ChoiceOutcome maxPositiveOutcomes;
     public ChoiceOutcome fullSpaceOutcomes;
