@@ -1997,7 +1997,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dfb0b42b268da024fb7aa3c8044d1aa5, type: 2}
   waitTimeAfterEndDay: 2
   waitTimeBeforeDisplayChoices: 2
-  waitTimeAfterAgentChoiceIndicatorsDisplay: 1.5
+  waitTimeBeforePlayerStatusUpdateDisplay: 1.25
+  waitTimeAfterPlayerStatusUpdateDisplay: 2.25
   endDayPanel: {fileID: 1309029912}
   gameOverPanel: {fileID: 1709384005}
   sceneUIManager: {fileID: 588561494}

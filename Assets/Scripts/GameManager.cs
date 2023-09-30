@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public Scene[] allScenes;
     public float waitTimeAfterEndDay = 2.0f;
     public float waitTimeBeforeDisplayChoices = 3.0f;
-    public float waitTimeAfterAgentChoiceIndicatorsDisplay = 2.0f;
+    public float waitTimeBeforePlayerStatusUpdateDisplay = 1.5f;
+    public float waitTimeAfterPlayerStatusUpdateDisplay = 1.5f;
     public GameObject endDayPanel;
     public GameObject gameOverPanel;
 
@@ -140,15 +141,18 @@ public class GameManager : MonoBehaviour
             .GroupBy(c => c.ID).Select(g => (g.Key, g.Count()))
             .ToDictionary(pair => pair.Item1, pair => pair.Item2);
 
-        // Visualize all agents' choices
-        sceneUIManager.DisplayChoiceIndicators(choiceCounters);
-        yield return new WaitForSeconds(waitTimeAfterAgentChoiceIndicatorsDisplay);
-
         // Compute outcomes for each choice
         var choiceOutcomes = choiceCounters.ToDictionary(el => el.Key, el => allChoices[el.Key].ComputeOutcome(el.Value));
 
-        // Update agents' statuses
+        // Visualize all agents' choices
+        sceneUIManager.DisplayChoiceIndicators(choiceCounters);
+        yield return new WaitForSeconds(waitTimeBeforePlayerStatusUpdateDisplay);
+        // Update player status (including UI)
+        statusUIManager.DisplayAgentStatus(playerAgent);
         playerAgent.UpdateStatus(choiceOutcomes[choice.ID]);
+        yield return new WaitForSeconds(waitTimeAfterPlayerStatusUpdateDisplay);
+
+        // Update other agents' statuses
         if (playerAgent.IsBroken())
         {
             GameOver();
@@ -160,7 +164,6 @@ public class GameManager : MonoBehaviour
         }
 
         // Update UI
-        statusUIManager.DisplayAgentStatus(playerAgent);
         sceneUIManager.HideChoices();
 
         // If this is the last scene of the day, end it

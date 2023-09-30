@@ -90,4 +90,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.5
-  waitAfterMoveDuration: 1
+  waitAfterMoveDuration: 3
