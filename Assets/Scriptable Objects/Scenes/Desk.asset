@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Desk
   m_EditorClassIdentifier: 
   ID: desk
-  backgroundImage: {fileID: 0}
+  backgroundImage: {fileID: 21300000, guid: 26d9708dfc031064184003b718644f5a, type: 3}
   possibleChoices:
   - {fileID: 11400000, guid: 322581acb0720d64e86fdb284337e99d, type: 2}
   - {fileID: 11400000, guid: 5c4b9299def59ef44967456309ddc182, type: 2}

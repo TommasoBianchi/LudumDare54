@@ -965,6 +965,7 @@ MonoBehaviour:
   backgroundScenePanel: {fileID: 588561492}
   choicesPanel: {fileID: 1325115299}
   timeBetweenChoicesDisplay: 0.25
+  agentChoiceIndicatorsContainer: {fileID: 2066636522}
   agentChoiceIndicatorPrefab: {fileID: 5350451339166073069, guid: 97683bc8b0b2a62498bd477ba738cf86, type: 3}
 --- !u!1 &717615583
 GameObject:
@@ -1522,6 +1523,7 @@ RectTransform:
   - {fileID: 588561491}
   - {fileID: 2066697002}
   - {fileID: 1325115299}
+  - {fileID: 2066636522}
   m_Father: {fileID: 1549373811}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3551,6 +3553,42 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &2066636521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066636522}
+  m_Layer: 5
+  m_Name: Agent Indicator Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2066636522
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066636521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 919465809}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2066697001
 GameObject:
   m_ObjectHideFlags: 0
