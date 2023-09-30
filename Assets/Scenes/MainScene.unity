@@ -925,7 +925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1474,6 +1474,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3bfd55aeffa42984bafe9154765f2c90, type: 2}
   - {fileID: 11400000, guid: 5df3ad161dd2b3b4f963650b16559050, type: 2}
   - {fileID: 11400000, guid: dfb0b42b268da024fb7aa3c8044d1aa5, type: 2}
+  waitTimeAfterEndDay: 2
+  waitTimeBeforeDisplayChoices: 3
+  waitTimeAfterAgentChoiceIndicatorsDisplay: 2
   sceneUIManager: {fileID: 588561494}
   statusUIManager: {fileID: 2066697006}
 --- !u!4 &888075875
