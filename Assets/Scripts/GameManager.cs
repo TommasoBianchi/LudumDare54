@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
         float playerHealthChange = Constants.BASE_HEALTH_PER_DAY;
         float playerHappynessChange = Constants.BASE_HAPPYNESS_PER_DAY;
         playerAgent.UpdateStatus(playerSalary, playerHealthChange, playerHappynessChange);
+        statusUIManager.DisplayAgentStatus(playerAgent);
 
         // TODO: give salary also to other agents
 
