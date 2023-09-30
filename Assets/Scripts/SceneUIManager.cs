@@ -13,7 +13,7 @@ public class SceneUIManager : MonoBehaviour
     public MoveToRect agentChoiceIndicatorPrefab;
 
     List<MoveToRect> agentChoiceIndicators = new List<MoveToRect>();
-    Dictionary<string, RectTransform> choiceIDToRectTransform = new Dictionary<string, RectTransform>();
+    Dictionary<string, ChoiceUIManager> choiceIDToUIManager = new Dictionary<string, ChoiceUIManager>();
 
     Scene currentScene;
 
@@ -38,16 +38,17 @@ public class SceneUIManager : MonoBehaviour
         int firstFreeIndicatorIndex = 0;
         foreach (var element in choicesCounter)
         {
-            if (!choiceIDToRectTransform.ContainsKey(element.Key))
+            if (!choiceIDToUIManager.ContainsKey(element.Key))
             {
                 // This is likely a choice that some AI agent made but that was not available to the player
                 continue;
             }
 
-            RectTransform target = choiceIDToRectTransform[element.Key];
+            ChoiceUIManager choiceUIManager = choiceIDToUIManager[element.Key];
+            choiceUIManager.DisplayCrowdLevel(element.Value);
             for (int i = 0; i < element.Value && firstFreeIndicatorIndex + i < agentChoiceIndicators.Count; ++i)
             {
-                agentChoiceIndicators[firstFreeIndicatorIndex + i].Activate(target);
+                agentChoiceIndicators[firstFreeIndicatorIndex + i].Activate(choiceUIManager.gameObject.GetComponent<RectTransform>());
             }
             firstFreeIndicatorIndex += element.Value;
         }
@@ -61,12 +62,13 @@ public class SceneUIManager : MonoBehaviour
 
     public void DisplayChoices(List<Choice> choices)
     {
-        choiceIDToRectTransform.Clear();
+        choiceIDToUIManager.Clear();
 
         for (int i = 0; i < choicesPanel.childCount; i++)
         {
-            choicesPanel.GetChild(i).GetComponent<ChoiceUIManager>().DisplayChoice(choices[i], i * timeBetweenChoicesDisplay);
-            choiceIDToRectTransform[choices[i].ID] = choicesPanel.GetChild(i).GetComponent<RectTransform>();
+            ChoiceUIManager choiceUIManager = choicesPanel.GetChild(i).GetComponent<ChoiceUIManager>();
+            choiceUIManager.DisplayChoice(choices[i], i * timeBetweenChoicesDisplay);
+            choiceIDToUIManager[choices[i].ID] = choiceUIManager;
         }
         choicesPanel.gameObject.SetActive(true);
     }
