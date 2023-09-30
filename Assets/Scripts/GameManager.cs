@@ -6,6 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Scene[] allScenes;
+    public float waitTimeAfterEndDay = 2.0f;
+    public float waitTimeBeforeDisplayChoices = 3.0f;
+    public float waitTimeAfterAgentChoiceIndicatorsDisplay = 2.0f;
 
     public SceneUIManager sceneUIManager;
     public StatusUIManager statusUIManager;
@@ -59,7 +62,7 @@ public class GameManager : MonoBehaviour
         if (currentSceneIndex >= 0 && firstSceneOfDay)
         {
             EndDay(); // TODO: display some kind of end day screen
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(waitTimeAfterEndDay);
         }
 
         // Update the scene
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
         currentScenePlayerChoices = currentScene.SelectAvailableChoices(playerAgent.history);
 
         sceneUIManager.DisplayScene(currentScene);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(waitTimeBeforeDisplayChoices);
         sceneUIManager.DisplayChoices(currentScenePlayerChoices);
     }
 
@@ -126,9 +129,8 @@ public class GameManager : MonoBehaviour
         Debug.Log(choiceCounters.Select(el => el.Key + " - " + el.Value).Aggregate((a, b) => a + "\n" + b));
 
         // Visualize all agents' choices
-        yield return new WaitForSeconds(0.5f);
         sceneUIManager.DisplayChoiceIndicators(choiceCounters);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(waitTimeAfterAgentChoiceIndicatorsDisplay);
 
         // Compute outcomes for each choice
         var choiceOutcomes = choiceCounters.ToDictionary(el => el.Key, el => allChoices[el.Key].ComputeOutcome(el.Value));
