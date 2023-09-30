@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Afterwork_Gym
   m_EditorClassIdentifier: 
   ID: afterwork_gym
-  cardImage: {fileID: 0}
+  displayText: Gym
   requirements: []
   space: 20
   maxPositiveOutcomes:

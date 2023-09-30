@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lunch_Mexican
   m_EditorClassIdentifier: 
   ID: lunch_mexican
-  cardImage: {fileID: 0}
+  displayText: Mexican
   requirements: []
   space: 20
   maxPositiveOutcomes:

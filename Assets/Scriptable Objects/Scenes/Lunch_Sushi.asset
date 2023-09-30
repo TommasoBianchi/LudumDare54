@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lunch_Sushi
   m_EditorClassIdentifier: 
   ID: lunch_sushi
-  cardImage: {fileID: 0}
+  displayText: Sushi
   requirements: []
   space: 20
   maxPositiveOutcomes:

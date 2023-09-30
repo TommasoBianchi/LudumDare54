@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Transport_Public
   m_EditorClassIdentifier: 
   ID: transport_public
-  cardImage: {fileID: 0}
+  displayText: Bus
   requirements: []
   space: 40
   maxPositiveOutcomes:

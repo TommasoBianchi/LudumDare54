@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Desk_Openspace
   m_EditorClassIdentifier: 
   ID: desk_openspace
-  cardImage: {fileID: 0}
+  displayText: Openspace
   requirements: []
   space: 20
   maxPositiveOutcomes:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Desk_Office
   m_EditorClassIdentifier: 
   ID: desk_office
-  cardImage: {fileID: 0}
+  displayText: Office
   requirements: []
   space: 20
   maxPositiveOutcomes:

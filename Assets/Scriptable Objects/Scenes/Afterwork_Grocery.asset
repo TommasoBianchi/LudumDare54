@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Afterwork_Grocery
   m_EditorClassIdentifier: 
   ID: afterwork_grocery
-  cardImage: {fileID: 0}
+  displayText: Grocery
   requirements: []
   space: 20
   maxPositiveOutcomes:

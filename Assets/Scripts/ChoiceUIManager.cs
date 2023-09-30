@@ -6,8 +6,7 @@ using TMPro;
 
 public class ChoiceUIManager : MonoBehaviour
 {
-    public Image choiceImage;
-    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI text;
     public CanvasGroup canvasGroup;
     public Button button;
     public float appearDuration;
@@ -24,16 +23,13 @@ public class ChoiceUIManager : MonoBehaviour
     public void DisplayChoice(Choice choice, float delay)
     {
         currentChoice = choice;
-        choiceImage.sprite = choice.cardImage;
+        text.SetText(choice.displayText);
 
         canvasGroup.alpha = 0;
         startAppearTime = Time.time + delay;
         endAppearTime = startAppearTime + appearDuration;
 
         button.interactable = true;
-
-        // TMP
-        titleText.SetText(choice.ID);
     }
 
     public void StopInteractions()

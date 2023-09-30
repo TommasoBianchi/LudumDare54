@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Transport_Bike
   m_EditorClassIdentifier: 
   ID: transport_bike
-  cardImage: {fileID: 0}
+  displayText: Bike
   requirements: []
   space: 10
   maxPositiveOutcomes:

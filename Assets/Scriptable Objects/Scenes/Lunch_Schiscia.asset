@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lunch_Schiscia
   m_EditorClassIdentifier: 
   ID: lunch_schiscia
-  cardImage: {fileID: 0}
+  displayText: Lunchbox
   requirements:
   - choice: {fileID: 11400000, guid: c00325b7529b0a248ab2f6ab2dd2d617, type: 2}
     daysSinceTaken: 3

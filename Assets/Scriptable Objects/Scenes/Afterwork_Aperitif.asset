@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Afterwork_Aperitif
   m_EditorClassIdentifier: 
   ID: afterwork_aperitif
-  cardImage: {fileID: 0}
+  displayText: Aperitif
   requirements: []
   space: 20
   maxPositiveOutcomes:

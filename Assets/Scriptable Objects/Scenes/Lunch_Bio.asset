@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lunch_Bio
   m_EditorClassIdentifier: 
   ID: lunch_bio
-  cardImage: {fileID: 0}
+  displayText: Bio
   requirements: []
   space: 20
   maxPositiveOutcomes:

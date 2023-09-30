@@ -38,7 +38,7 @@ public struct ChoiceOutcome
 public class Choice : ScriptableObject
 {
     public string ID;
-    public Sprite cardImage;
+    public string displayText;
     public List<ChoiceRequirement> requirements;
     public int space;
     public ChoiceOutcome maxPositiveOutcomes;
