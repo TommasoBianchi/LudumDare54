@@ -8,15 +8,23 @@ public class AIAgent : Agent
     string lastSelectedChoiceID;
 
     float decayFactor = 0.75f; // TODO
+    float biasFactor = 0.5f;
 
-    public Choice SelectChoice(List<Choice> choices)
+    public Choice SelectChoice(List<Choice> choices, Choice bias)
     {
         Choice selectedChoice;
 
         List<Choice> unseenChoices = choices.Where(c => !pastChoicesValuations.ContainsKey(c.ID)).ToList();
         if (unseenChoices.Count > 0)
         {
-            selectedChoice = unseenChoices[Random.Range(0, unseenChoices.Count)];
+            if (Random.Range(0.0f, 1.0f) < biasFactor && unseenChoices.Contains(bias))
+            {
+                selectedChoice = bias;
+            }
+            else
+            {
+                selectedChoice = unseenChoices[Random.Range(0, unseenChoices.Count)];
+            }
         }
         else
         {
@@ -32,6 +40,7 @@ public class AIAgent : Agent
             }
         }
 
+        Debug.Log("Agent selected " + selectedChoice);
         history.AddChoice(selectedChoice);
         lastSelectedChoiceID = selectedChoice.ID;
         return selectedChoice;

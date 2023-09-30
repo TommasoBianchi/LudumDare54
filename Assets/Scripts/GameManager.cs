@@ -131,8 +131,10 @@ public class GameManager : MonoBehaviour
         playerAgent.history.AddChoice(choice);
 
         // Make also AI agents select their choice
+        Choice bias = allScenes[currentSceneIndex].possibleChoices[Random.Range(0, allScenes[currentSceneIndex].possibleChoices.Count - 1)];
+        Debug.Log("Bias: " + bias);
         var aiChoices = aiAgents
-            .Select(a => a.SelectChoice(allScenes[currentSceneIndex].SelectAvailableChoices(a.history)));
+            .Select(a => a.SelectChoice(allScenes[currentSceneIndex].SelectAvailableChoices(a.history), bias));
 
         // Count how many agents have made any choice (including the player)
         var choiceCounters = aiChoices
