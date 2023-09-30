@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public float waitTimeAfterEndDay = 2.0f;
     public float waitTimeBeforeDisplayChoices = 3.0f;
     public float waitTimeAfterAgentChoiceIndicatorsDisplay = 2.0f;
+    public GameObject endDayPanel;
 
     public SceneUIManager sceneUIManager;
     public StatusUIManager statusUIManager;
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
 
         SetupAgents();
 
-        StartCoroutine(NextScene());
+        StartDay();
     }
 
     void SetupAgents()
@@ -62,7 +63,8 @@ public class GameManager : MonoBehaviour
         if (currentSceneIndex >= 0 && firstSceneOfDay)
         {
             EndDay(); // TODO: display some kind of end day screen
-            yield return new WaitForSeconds(waitTimeAfterEndDay);
+            currentSceneIndex = (currentSceneIndex + 1) % allScenes.Length;
+            yield break;
         }
 
         // Update the scene
@@ -77,6 +79,17 @@ public class GameManager : MonoBehaviour
         sceneUIManager.DisplayChoices(currentScenePlayerChoices);
     }
 
+    public void StartDay()
+    {
+        if (currentSceneIndex >= 0)
+        {
+            // Only if this is not the first day, display salary
+            statusUIManager.DisplayAgentStatus(playerAgent);
+        }
+
+        StartCoroutine(NextScene());
+    }
+
     void EndDay()
     {
         // Give salaries and other end-of-day stats change
@@ -85,7 +98,6 @@ public class GameManager : MonoBehaviour
         float playerHealthChange = Constants.BASE_HEALTH_PER_DAY;
         float playerHappynessChange = Constants.BASE_HAPPYNESS_PER_DAY;
         playerAgent.UpdateStatus(playerSalary, playerHealthChange, playerHappynessChange);
-        statusUIManager.DisplayAgentStatus(playerAgent);
 
         foreach (var agent in aiAgents)
         {
@@ -102,6 +114,9 @@ public class GameManager : MonoBehaviour
         {
             agent.history.StartDay();
         }
+
+        // Display end of day panel
+        endDayPanel.SetActive(true);
     }
 
     public static void SelectPlayerChoice(Choice choice)
