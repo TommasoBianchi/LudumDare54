@@ -26,5 +26,5 @@ MonoBehaviour:
     happyness: 0
   maxNegativeOutcomes:
     money: -15
-    health: 0.2
-    happyness: 0
+    health: 0.15
+    happyness: -0.2

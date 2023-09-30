@@ -19,12 +19,12 @@ MonoBehaviour:
   maxPositiveOutcomes:
     money: 0
     health: 0
-    happyness: 0.05
+    happyness: 0.15
   fullSpaceOutcomes:
     money: 0
     health: 0
-    happyness: 0.1
+    happyness: 0.3
   maxNegativeOutcomes:
     money: 0
-    health: -0.05
-    happyness: -0.05
+    health: -0.15
+    happyness: -0.15

@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: transport_public
   cardImage: {fileID: 0}
   requirements: []
-  space: 20
+  space: 40
   maxPositiveOutcomes:
     money: -5
     health: 0.1

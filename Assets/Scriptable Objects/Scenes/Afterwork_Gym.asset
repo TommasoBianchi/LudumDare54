@@ -17,11 +17,11 @@ MonoBehaviour:
   requirements: []
   space: 20
   maxPositiveOutcomes:
-    money: -15
+    money: -30
     health: 0.4
-    happyness: 0.4
+    happyness: 0.25
   fullSpaceOutcomes:
-    money: -15
+    money: -30
     health: 0.4
     happyness: 0.1
   maxNegativeOutcomes:
