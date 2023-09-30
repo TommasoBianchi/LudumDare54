@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75268161d99851d4f9638944032365c5, type: 3}
-  m_Name: Lunch
+  m_Name: Afterwork
   m_EditorClassIdentifier: 
-  ID: lunch
+  ID: afterwork
   backgroundImage: {fileID: 0}
   possibleChoices:
-  - {fileID: 11400000, guid: fb70e946732acfa46b3e7c5461e881ff, type: 2}
-  - {fileID: 11400000, guid: fdc0b6e7c16486c4fab7836471de313d, type: 2}
-  - {fileID: 11400000, guid: ba27624ec67e94545ba260fff02a4385, type: 2}
-  - {fileID: 11400000, guid: 59e26ffd6044d054bbed1bc59598aabc, type: 2}
+  - {fileID: 11400000, guid: 13b149a42da6fec4983022f75b720f22, type: 2}
+  - {fileID: 11400000, guid: c00325b7529b0a248ab2f6ab2dd2d617, type: 2}
+  - {fileID: 11400000, guid: 0e5c965ef19986b448762de40f217b49, type: 2}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0231b985099cda14a82b446fa4a30b86, type: 3}
+  m_Name: Afterwork_Aperitif
+  m_EditorClassIdentifier: 
+  ID: afterwork_aperitif
+  cardImage: {fileID: 0}
+  requirements: []
+  space: 20
+  maxPositiveOutcomes:
+    money: -25
+    health: -0.25
+    happyness: -0.4
+  fullSpaceOutcomes:
+    money: -30
+    health: -0.1
+    happyness: 0.4
+  maxNegativeOutcomes:
+    money: -5
+    health: -0.1
+    happyness: 0.1

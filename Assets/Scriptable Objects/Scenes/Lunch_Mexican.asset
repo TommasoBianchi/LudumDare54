@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0231b985099cda14a82b446fa4a30b86, type: 3}
-  m_Name: Lunch_DEBUG
+  m_Name: Lunch_Mexican
   m_EditorClassIdentifier: 
-  ID: lunch_debug
+  ID: lunch_mexican
   cardImage: {fileID: 0}
   requirements: []
-  space: 0
+  space: 20
   maxPositiveOutcomes:
     money: -10
-    health: 0.3
-    happyness: 0.1
+    health: 0.1
+    happyness: 0
   fullSpaceOutcomes:
     money: -10
-    health: 0.2
-    happyness: -0.1
+    health: 0
+    happyness: 0.1
   maxNegativeOutcomes:
-    money: -2
+    money: -5
     health: -0.3
-    happyness: -0.4
+    happyness: -0.3
