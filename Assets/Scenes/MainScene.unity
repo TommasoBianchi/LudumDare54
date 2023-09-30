@@ -1496,6 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceImage: {fileID: 817988330}
+  titleText: {fileID: 259194864}
 --- !u!1 &888075873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,6 +1528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allScenes:
   - {fileID: 11400000, guid: 5df3ad161dd2b3b4f963650b16559050, type: 2}
+  - {fileID: 11400000, guid: dfb0b42b268da024fb7aa3c8044d1aa5, type: 2}
   sceneUIManager: {fileID: 588561494}
   statusUIManager: {fileID: 2066697006}
 --- !u!4 &888075875
@@ -1769,6 +1771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceImage: {fileID: 928947951}
+  titleText: {fileID: 188017627}
 --- !u!1 &931837133
 GameObject:
   m_ObjectHideFlags: 0
@@ -3268,6 +3271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choiceImage: {fileID: 2030616730}
+  titleText: {fileID: 1782585317}
 --- !u!1 &2066697001
 GameObject:
   m_ObjectHideFlags: 0

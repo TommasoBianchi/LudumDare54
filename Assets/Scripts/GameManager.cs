@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,7 +13,9 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
 
     Agent playerAgent;
-    // AI agents
+    List<AIAgent> aiAgents;
+
+    Dictionary<string, Choice> allChoices;
 
     int currentSceneIndex = -1;
     List<Choice> currentSceneSelectedChoices;
@@ -27,6 +30,11 @@ public class GameManager : MonoBehaviour
 
         instance = this;
 
+        allChoices = allScenes
+            .Select(s => s.possibleChoices)
+            .Aggregate(new List<Choice>(), (l1, l2) => l1.Concat(l2).ToList())
+            .ToDictionary(c => c.ID, c => c);
+
         SetupAgents();
 
         NextScene();
@@ -36,6 +44,12 @@ public class GameManager : MonoBehaviour
     {
         playerAgent = new Agent();
         statusUIManager.DisplayAgentStatus(playerAgent);
+
+        aiAgents = new List<AIAgent>();
+        for (int i = 0; i < Constants.MAX_PEOPLE; i++)
+        {
+            aiAgents.Add(new AIAgent());
+        }
     }
 
     void NextScene()
@@ -70,12 +84,33 @@ public class GameManager : MonoBehaviour
 
     public static void SelectPlayerChoice(Choice choice)
     {
-        // TODO: compute choices for all other agents
-        // TODO: compute outcomes for all other choices, based on other agents' choices
-        var outcomes = choice.maxPositiveOutcomes;
-        instance.playerAgent.UpdateStatus(outcomes);
+        // Make also AI agents select their choice
+        var aiChoices = instance.aiAgents.Select(a => a.SelectChoice(instance.currentSceneSelectedChoices));
+
+        // Count how many agents have made any choice (including the player)
+        var choiceCounters = aiChoices
+            .Concat(new List<Choice>() { choice })
+            .GroupBy(c => c.ID).Select(g => (g.Key, g.Count()))
+            .ToDictionary(pair => pair.Item1, pair => pair.Item2);
+
+        // TMP
+        Debug.Log(choiceCounters.Select(el => el.Key + " - " + el.Value).Aggregate((a, b) => a + "\n" + b));
+
+        // Compute outcomes for each choice
+        var choiceOutcomes = choiceCounters.ToDictionary(el => el.Key, el => instance.allChoices[el.Key].ComputeOutcome(el.Value));
+
+        // Update agents' statuses
+        instance.playerAgent.UpdateStatus(choiceOutcomes[choice.ID]);
+        foreach (var (agent, agentChoice) in instance.aiAgents.Zip(aiChoices, (a, c) => (a, c)))
+        {
+            agent.UpdateStatus(choiceOutcomes[agentChoice.ID]);
+        }
+
+        // Update UI
         instance.statusUIManager.DisplayAgentStatus(instance.playerAgent);
         instance.sceneUIManager.HideChoices();
+
+        // Advance to next scene
         instance.NextScene();
     }
 }

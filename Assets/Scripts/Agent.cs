@@ -18,7 +18,7 @@ public class Agent
         UpdateStatus(choiceOutcomes.money, choiceOutcomes.health, choiceOutcomes.happyness);
     }
 
-    public void UpdateStatus(int money, float health, float happyness)
+    public virtual void UpdateStatus(int money, float health, float happyness)
     {
         currentMoney += money;
         currentHealth = Mathf.Clamp01(currentHealth + health);
