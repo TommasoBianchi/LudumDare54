@@ -58,15 +58,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator NextScene()
     {
-        // If this is the first scene of the day, end the previous one
-        bool firstSceneOfDay = currentSceneIndex == allScenes.Length - 1;
-        if (currentSceneIndex >= 0 && firstSceneOfDay)
-        {
-            EndDay(); // TODO: display some kind of end day screen
-            currentSceneIndex = (currentSceneIndex + 1) % allScenes.Length;
-            yield break;
-        }
-
         // Update the scene
         currentSceneIndex = (currentSceneIndex + 1) % allScenes.Length;
         Scene currentScene = allScenes[currentSceneIndex];
@@ -159,7 +150,15 @@ public class GameManager : MonoBehaviour
         statusUIManager.DisplayAgentStatus(playerAgent);
         sceneUIManager.HideChoices();
 
-        // Advance to next scene
-        StartCoroutine(NextScene());
+        // If this is the last scene of the day, end it
+        if (currentSceneIndex == allScenes.Length - 1)
+        {
+            EndDay();
+        }
+        // Otherwise, Advance to next scene
+        else
+        {
+            StartCoroutine(NextScene());
+        }
     }
 }
