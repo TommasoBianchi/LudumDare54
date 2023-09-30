@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
         // Select choices (based also on history) for the player
         currentScenePlayerChoices = currentScene.SelectAvailableChoices(playerAgent.history);
 
-        // TODO: add timings if necessary (use coroutine)
         sceneUIManager.DisplayScene(currentScene);
         yield return new WaitForSeconds(2);
         sceneUIManager.DisplayChoices(currentScenePlayerChoices);
