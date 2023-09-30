@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SceneUIManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SceneUIManager : MonoBehaviour
     public Transform choicesPanel;
     public float timeBetweenChoicesDisplay;
     public RectTransform agentChoiceIndicatorsContainer;
+    public TextMeshProUGUI flavorText;
 
     public MoveToRect agentChoiceIndicatorPrefab;
 
@@ -58,6 +60,8 @@ public class SceneUIManager : MonoBehaviour
     {
         currentScene = scene;
         backgroundScenePanel.sprite = scene.backgroundImage;
+        flavorText.SetText(scene.flavorText);
+        flavorText.gameObject.SetActive(true);
     }
 
     public void DisplayChoices(List<Choice> choices)

@@ -8,6 +8,7 @@ public class Scene : ScriptableObject
     public string ID;
     public Sprite backgroundImage;
     public List<Choice> possibleChoices;
+    public string flavorText;
 
     public List<Choice> SelectAvailableChoices(History agentHistory)
     {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public SceneUIManager sceneUIManager;
     public StatusUIManager statusUIManager;
+    public TextMeshProUGUI flavorText;
 
     static GameManager instance;
 
@@ -108,6 +110,7 @@ public class GameManager : MonoBehaviour
 
         // Display end of day panel
         endDayPanel.SetActive(true);
+        flavorText.gameObject.SetActive(false);
     }
 
     public static void SelectPlayerChoice(Choice choice)
