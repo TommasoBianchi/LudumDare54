@@ -7,6 +7,7 @@ public class SceneUIManager : MonoBehaviour
 {
     public Image backgroundScenePanel;
     public Transform choicesPanel;
+    public float timeBetweenChoicesDisplay;
 
     Scene currentScene;
 
@@ -20,7 +21,7 @@ public class SceneUIManager : MonoBehaviour
     {
         for (int i = 0; i < choicesPanel.childCount; i++)
         {
-            choicesPanel.GetChild(i).GetComponent<ChoiceUIManager>().DisplayChoice(choices[i]);
+            choicesPanel.GetChild(i).GetComponent<ChoiceUIManager>().DisplayChoice(choices[i], i * timeBetweenChoicesDisplay);
         }
         choicesPanel.gameObject.SetActive(true);
     }

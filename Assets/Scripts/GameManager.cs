@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
         SetupAgents();
 
-        NextScene();
+        StartCoroutine(NextScene());
     }
 
     void SetupAgents()
@@ -52,9 +52,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void NextScene()
+    IEnumerator NextScene()
     {
-        bool lastSceneOfDay = currentSceneIndex == allScenes.Length - 1;
+        // If this is the first scene of the day, end the previous one
+        bool firstSceneOfDay = currentSceneIndex == allScenes.Length - 1;
+        if (currentSceneIndex >= 0 && firstSceneOfDay)
+        {
+            EndDay(); // TODO: display some kind of end day screen
+            yield return new WaitForSeconds(2);
+        }
+
+        // Update the scene
         currentSceneIndex = (currentSceneIndex + 1) % allScenes.Length;
         Scene currentScene = allScenes[currentSceneIndex];
 
@@ -63,12 +71,8 @@ public class GameManager : MonoBehaviour
 
         // TODO: add timings if necessary (use coroutine)
         sceneUIManager.DisplayScene(currentScene);
+        yield return new WaitForSeconds(2);
         sceneUIManager.DisplayChoices(currentScenePlayerChoices);
-
-        if (lastSceneOfDay)
-        {
-            EndDay(); // TODO: display some kind of end day screen
-        }
     }
 
     void EndDay()
@@ -122,6 +126,6 @@ public class GameManager : MonoBehaviour
         instance.sceneUIManager.HideChoices();
 
         // Advance to next scene
-        instance.NextScene();
+        instance.StartCoroutine(instance.NextScene());
     }
 }

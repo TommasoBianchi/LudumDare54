@@ -8,12 +8,27 @@ public class ChoiceUIManager : MonoBehaviour
 {
     public Image choiceImage;
     public TextMeshProUGUI titleText;
-    Choice currentChoice;
+    public CanvasGroup canvasGroup;
+    public float appearDuration;
 
-    public void DisplayChoice(Choice choice)
+    Choice currentChoice;
+    float startAppearTime;
+    float endAppearTime;
+
+    void Update()
+    {
+        canvasGroup.alpha = Mathf.Clamp01((Time.time - startAppearTime) / (endAppearTime - startAppearTime));
+    }
+
+    public void DisplayChoice(Choice choice, float delay)
     {
         currentChoice = choice;
         choiceImage.sprite = choice.cardImage;
+
+        canvasGroup.alpha = 0;
+        startAppearTime = Time.time + delay;
+        endAppearTime = startAppearTime + appearDuration;
+
         // TMP
         titleText.SetText(choice.ID);
     }
