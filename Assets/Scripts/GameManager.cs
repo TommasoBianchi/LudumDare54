@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Scene[] allScenes;
+
+    public SceneUIManager sceneUIManager;
+
+    static GameManager instance;
+
+    private void Awake()
     {
-        
+        if (instance != null)
+        {
+            Debug.Log("Duplicate GameManager, autodestroying");
+            Destroy(this.gameObject);
+        }
+
+        instance = this;
+
+        // TMP
+        sceneUIManager.DisplayScene(allScenes[0]);
+        sceneUIManager.DisplayChoices(allScenes[0].possibleChoices);
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void SelectPlayerChoice(Choice choice)
     {
-        
+        // TMP
+        instance.sceneUIManager.HideChoices();
     }
 }
