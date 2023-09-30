@@ -40,6 +40,13 @@ public class ChoiceUIManager : MonoBehaviour
 
     public void DisplayCrowdLevel(int numberOfPeople)
     {
+        StartCoroutine(DisplayCrowdLevelCoroutine(numberOfPeople));
+    }
+
+    public IEnumerator DisplayCrowdLevelCoroutine(int numberOfPeople)
+    {
+        yield return new WaitForSeconds(0.75f);
+
         Color targetColor = numberOfPeople > currentChoice.space ? crowdLevelNegativeColor : crowdLevelPositiveColor;
         var lerpAmount = numberOfPeople > currentChoice.space ? ((float)numberOfPeople) / Constants.MAX_PEOPLE : 1 - ((float)numberOfPeople) / currentChoice.space;
 

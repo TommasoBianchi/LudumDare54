@@ -4122,6 +4122,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1325115299}
     m_Modifications:
+    - target: {fileID: 2622357784616605619, guid: b20017462cfe60b4d9971071154291cd, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6266281019916560522, guid: b20017462cfe60b4d9971071154291cd, type: 3}
       propertyPath: m_Name
       value: Choice UI Card

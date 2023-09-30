@@ -27,8 +27,8 @@ public class MoveToRect : MonoBehaviour
     {
         rectTransform.position = startingPoint;
         Rect targetRect = target.GetWorldRect();
-        float xDispersion = targetRect.width / 2.0f * 0.8f;
-        float yDispersion = targetRect.height / 2.0f * 0.8f;
+        float xDispersion = targetRect.width / 2.0f * 0.6f;
+        float yDispersion = targetRect.height / 2.0f * 0.6f;
         targetPoint = new Vector3(
             Random.Range(target.position.x - xDispersion, target.position.x + xDispersion),
             Random.Range(target.position.y - yDispersion, target.position.y + yDispersion),
