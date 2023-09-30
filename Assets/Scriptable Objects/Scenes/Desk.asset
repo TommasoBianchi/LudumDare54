@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75268161d99851d4f9638944032365c5, type: 3}
+  m_Name: Desk
+  m_EditorClassIdentifier: 
+  ID: desk
+  backgroundImage: {fileID: 0}
+  possibleChoices:
+  - {fileID: 11400000, guid: 322581acb0720d64e86fdb284337e99d, type: 2}
+  - {fileID: 11400000, guid: 5c4b9299def59ef44967456309ddc182, type: 2}
+  - {fileID: 11400000, guid: 0eaeb4619be696a47b11b634384eeb40, type: 2}

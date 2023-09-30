@@ -1527,6 +1527,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allScenes:
+  - {fileID: 11400000, guid: 09f0129502ef6a74bb29219a66cf4b3f, type: 2}
+  - {fileID: 11400000, guid: 3bfd55aeffa42984bafe9154765f2c90, type: 2}
   - {fileID: 11400000, guid: 5df3ad161dd2b3b4f963650b16559050, type: 2}
   - {fileID: 11400000, guid: dfb0b42b268da024fb7aa3c8044d1aa5, type: 2}
   sceneUIManager: {fileID: 588561494}
