@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0231b985099cda14a82b446fa4a30b86, type: 3}
   m_Name: Lunch_Schiscia
   m_EditorClassIdentifier: 
-  ID: afterwork_grocery
+  ID: lunch_schiscia
   cardImage: {fileID: 0}
   requirements:
-  - choiceID: grocery
+  - choice: {fileID: 11400000, guid: c00325b7529b0a248ab2f6ab2dd2d617, type: 2}
     daysSinceTaken: 3
   space: 20
   maxPositiveOutcomes:
