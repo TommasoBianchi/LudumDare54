@@ -132,7 +132,6 @@ public class GameManager : MonoBehaviour
 
         // Make also AI agents select their choice
         Choice bias = allScenes[currentSceneIndex].possibleChoices[Random.Range(0, allScenes[currentSceneIndex].possibleChoices.Count - 1)];
-        Debug.Log("Bias: " + bias);
         var aiChoices = aiAgents
             .Select(a => a.SelectChoice(allScenes[currentSceneIndex].SelectAvailableChoices(a.history), bias));
 
@@ -141,9 +140,6 @@ public class GameManager : MonoBehaviour
             .Concat(new List<Choice>() { choice })
             .GroupBy(c => c.ID).Select(g => (g.Key, g.Count()))
             .ToDictionary(pair => pair.Item1, pair => pair.Item2);
-
-        // TMP
-        Debug.Log(choiceCounters.Select(el => el.Key + " - " + el.Value).Aggregate((a, b) => a + "\n" + b));
 
         // Visualize all agents' choices
         sceneUIManager.DisplayChoiceIndicators(choiceCounters);

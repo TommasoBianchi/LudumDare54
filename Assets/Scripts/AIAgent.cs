@@ -40,7 +40,6 @@ public class AIAgent : Agent
             }
         }
 
-        Debug.Log("Agent selected " + selectedChoice);
         history.AddChoice(selectedChoice);
         lastSelectedChoiceID = selectedChoice.ID;
         return selectedChoice;
