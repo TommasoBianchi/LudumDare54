@@ -40,6 +40,13 @@ public class FloatingIncrementUI : MonoBehaviour
 
         float t = Time.time - startTime;
 
+        if (t > moveDuration && t > fadeDuration)
+        {
+            isActive = false;
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (t <= moveDuration)
         {
             rectTransform.anchoredPosition = startingPoint + (Vector3)(Vector2.up * speed * t);

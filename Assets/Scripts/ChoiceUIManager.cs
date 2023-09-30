@@ -9,6 +9,7 @@ public class ChoiceUIManager : MonoBehaviour
     public Image choiceImage;
     public TextMeshProUGUI titleText;
     public CanvasGroup canvasGroup;
+    public Button button;
     public float appearDuration;
 
     Choice currentChoice;
@@ -29,8 +30,15 @@ public class ChoiceUIManager : MonoBehaviour
         startAppearTime = Time.time + delay;
         endAppearTime = startAppearTime + appearDuration;
 
+        button.interactable = true;
+
         // TMP
         titleText.SetText(choice.ID);
+    }
+
+    public void StopInteractions()
+    {
+        button.interactable = false;
     }
 
     public void OnChoiceSelected()

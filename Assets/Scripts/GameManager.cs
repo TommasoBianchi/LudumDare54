@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         currentScenePlayerChoices = currentScene.SelectAvailableChoices(playerAgent.history);
 
         sceneUIManager.DisplayScene(currentScene);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         sceneUIManager.DisplayChoices(currentScenePlayerChoices);
     }
 
@@ -103,12 +103,18 @@ public class GameManager : MonoBehaviour
 
     public static void SelectPlayerChoice(Choice choice)
     {
+        instance.sceneUIManager.StopChoices();
+        instance.StartCoroutine(instance.SelectPlayerChoiceCoroutine(choice));
+    }
+
+    IEnumerator SelectPlayerChoiceCoroutine(Choice choice)
+    {
         // Update player agent history
-        instance.playerAgent.history.AddChoice(choice);
+        playerAgent.history.AddChoice(choice);
 
         // Make also AI agents select their choice
-        var aiChoices = instance.aiAgents
-            .Select(a => a.SelectChoice(instance.allScenes[instance.currentSceneIndex].SelectAvailableChoices(a.history)));
+        var aiChoices = aiAgents
+            .Select(a => a.SelectChoice(allScenes[currentSceneIndex].SelectAvailableChoices(a.history)));
 
         // Count how many agents have made any choice (including the player)
         var choiceCounters = aiChoices
@@ -119,21 +125,26 @@ public class GameManager : MonoBehaviour
         // TMP
         Debug.Log(choiceCounters.Select(el => el.Key + " - " + el.Value).Aggregate((a, b) => a + "\n" + b));
 
+        // Visualize all agents' choices
+        yield return new WaitForSeconds(0.5f);
+        sceneUIManager.DisplayChoiceIndicators(choiceCounters);
+        yield return new WaitForSeconds(2f);
+
         // Compute outcomes for each choice
-        var choiceOutcomes = choiceCounters.ToDictionary(el => el.Key, el => instance.allChoices[el.Key].ComputeOutcome(el.Value));
+        var choiceOutcomes = choiceCounters.ToDictionary(el => el.Key, el => allChoices[el.Key].ComputeOutcome(el.Value));
 
         // Update agents' statuses
-        instance.playerAgent.UpdateStatus(choiceOutcomes[choice.ID]);
-        foreach (var (agent, agentChoice) in instance.aiAgents.Zip(aiChoices, (a, c) => (a, c)))
+        playerAgent.UpdateStatus(choiceOutcomes[choice.ID]);
+        foreach (var (agent, agentChoice) in aiAgents.Zip(aiChoices, (a, c) => (a, c)))
         {
             agent.UpdateStatus(choiceOutcomes[agentChoice.ID]);
         }
 
         // Update UI
-        instance.statusUIManager.DisplayAgentStatus(instance.playerAgent);
-        instance.sceneUIManager.HideChoices();
+        statusUIManager.DisplayAgentStatus(playerAgent);
+        sceneUIManager.HideChoices();
 
         // Advance to next scene
-        instance.StartCoroutine(instance.NextScene());
+        StartCoroutine(NextScene());
     }
 }
