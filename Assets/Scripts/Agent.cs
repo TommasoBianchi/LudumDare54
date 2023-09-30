@@ -6,11 +6,16 @@ public class Agent
     public float currentHealth { get; private set; }
     public float currentHappyness { get; private set; }
 
+    public History history { get; private set; }
+
     public Agent()
     {
         currentMoney = Constants.STARTING_MONEY;
         currentHealth = Constants.STARTING_HEALTH;
         currentHappyness = Constants.STARTING_HAPPYNESS;
+
+        history = new History();
+        history.StartDay();
     }
 
     public void UpdateStatus(ChoiceOutcome choiceOutcomes)

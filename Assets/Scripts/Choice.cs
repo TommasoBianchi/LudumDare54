@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public struct ChoiceRequirement
 {
-    public string choiceID;
+    public Choice choice;
     public int daysSinceTaken;
 }
 

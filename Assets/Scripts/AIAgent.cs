@@ -11,25 +11,28 @@ public class AIAgent : Agent
 
     public Choice SelectChoice(List<Choice> choices)
     {
+        Choice selectedChoice;
+
         List<Choice> unseenChoices = choices.Where(c => !pastChoicesValuations.ContainsKey(c.ID)).ToList();
         if (unseenChoices.Count > 0)
         {
-            Choice randomChoice = unseenChoices[Random.Range(0, unseenChoices.Count)];
-            lastSelectedChoiceID = randomChoice.ID;
-            return randomChoice;
+            selectedChoice = unseenChoices[Random.Range(0, unseenChoices.Count)];
         }
-
-        Choice selectedChoice = choices[0];
-        float selectedChoiceValuation = pastChoicesValuations[selectedChoice.ID];
-        foreach (var choice in choices)
+        else
         {
-            if (pastChoicesValuations[choice.ID] > selectedChoiceValuation)
+            selectedChoice = choices[0];
+            float selectedChoiceValuation = pastChoicesValuations[selectedChoice.ID];
+            foreach (var choice in choices)
             {
-                selectedChoice = choice;
-                selectedChoiceValuation = pastChoicesValuations[selectedChoice.ID];
+                if (pastChoicesValuations[choice.ID] > selectedChoiceValuation)
+                {
+                    selectedChoice = choice;
+                    selectedChoiceValuation = pastChoicesValuations[selectedChoice.ID];
+                }
             }
         }
 
+        history.AddChoice(selectedChoice);
         lastSelectedChoiceID = selectedChoice.ID;
         return selectedChoice;
     }

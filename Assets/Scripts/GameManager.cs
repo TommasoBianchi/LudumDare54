@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     Dictionary<string, Choice> allChoices;
 
     int currentSceneIndex = -1;
-    List<Choice> currentSceneSelectedChoices;
+    List<Choice> currentScenePlayerChoices;
 
     private void Awake()
     {
@@ -58,12 +58,12 @@ public class GameManager : MonoBehaviour
         currentSceneIndex = (currentSceneIndex + 1) % allScenes.Length;
         Scene currentScene = allScenes[currentSceneIndex];
 
-        // TODO: select choices based also on history
-        currentSceneSelectedChoices = currentScene.possibleChoices; // TMP
+        // Select choices (based also on history) for the player
+        currentScenePlayerChoices = currentScene.SelectAvailableChoices(playerAgent.history);
 
         // TODO: add timings if necessary (use coroutine)
         sceneUIManager.DisplayScene(currentScene);
-        sceneUIManager.DisplayChoices(currentSceneSelectedChoices);
+        sceneUIManager.DisplayChoices(currentScenePlayerChoices);
 
         if (lastSceneOfDay)
         {
@@ -80,12 +80,23 @@ public class GameManager : MonoBehaviour
         playerAgent.UpdateStatus(playerSalary, playerHealthChange, playerHappynessChange);
 
         // TODO: give salary also to other agents
+
+        // Update all agents' history
+        playerAgent.history.StartDay();
+        foreach (var agent in aiAgents)
+        {
+            agent.history.StartDay();
+        }
     }
 
     public static void SelectPlayerChoice(Choice choice)
     {
+        // Update player agent history
+        instance.playerAgent.history.AddChoice(choice);
+
         // Make also AI agents select their choice
-        var aiChoices = instance.aiAgents.Select(a => a.SelectChoice(instance.currentSceneSelectedChoices));
+        var aiChoices = instance.aiAgents
+            .Select(a => a.SelectChoice(instance.allScenes[instance.currentSceneIndex].SelectAvailableChoices(a.history)));
 
         // Count how many agents have made any choice (including the player)
         var choiceCounters = aiChoices
