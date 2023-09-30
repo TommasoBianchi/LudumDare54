@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     void EndDay()
     {
+        // Give salaries and other end-of-day stats change
         // TODO: compute salary based on day choices
         int playerSalary = Constants.BASE_MONEY_PER_DAY;
         float playerHealthChange = Constants.BASE_HEALTH_PER_DAY;
@@ -84,7 +85,14 @@ public class GameManager : MonoBehaviour
         playerAgent.UpdateStatus(playerSalary, playerHealthChange, playerHappynessChange);
         statusUIManager.DisplayAgentStatus(playerAgent);
 
-        // TODO: give salary also to other agents
+        foreach (var agent in aiAgents)
+        {
+            // TODO: compute salary based on day choices
+            int agentSalary = Constants.BASE_MONEY_PER_DAY;
+            float agentHealthChange = Constants.BASE_HEALTH_PER_DAY;
+            float agentHappynessChange = Constants.BASE_HAPPYNESS_PER_DAY;
+            agent.UpdateStatus(agentSalary, agentHealthChange, agentHappynessChange);
+        }
 
         // Update all agents' history
         playerAgent.history.StartDay();
