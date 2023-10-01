@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
         playerAgent.UpdateStatus(playerSalary, playerHealthChange, playerHappynessChange);
         if (playerAgent.IsBroken())
         {
+            statusUIManager.DisplayAgentStatus(playerAgent);
             GameOver();
             return;
         }
@@ -148,8 +149,8 @@ public class GameManager : MonoBehaviour
         sceneUIManager.DisplayChoiceIndicators(choiceCounters);
         yield return new WaitForSeconds(waitTimeBeforePlayerStatusUpdateDisplay);
         // Update player status (including UI)
-        statusUIManager.DisplayAgentStatus(playerAgent);
         playerAgent.UpdateStatus(choiceOutcomes[choice.ID]);
+        statusUIManager.DisplayAgentStatus(playerAgent);
         yield return new WaitForSeconds(waitTimeAfterPlayerStatusUpdateDisplay);
 
         // Update other agents' statuses
