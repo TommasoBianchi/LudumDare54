@@ -53,7 +53,11 @@ public class ChoiceUIManager : MonoBehaviour
         crowdLevelText.color = Color.Lerp(crowdLevelFullColor, targetColor, lerpAmount);
 
         string message = "Empty";
-        if (numberOfPeople > 1 && numberOfPeople < currentChoice.space)
+        if (numberOfPeople <= 1)
+        {
+            message = "Empty";
+        }
+        else if (numberOfPeople > 1 && numberOfPeople < currentChoice.space)
         {
             message = "Not too crowded";
         }
